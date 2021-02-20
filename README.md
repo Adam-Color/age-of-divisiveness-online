@@ -20,7 +20,7 @@ Nevertheless, keep your kingdom in order and do not find your domain in the age 
 * Client-Server architecture.
 * Great pixel-art style graphics.
 * Strong Civilization I and old Settlers vibe.
-* Many players (for now on one PC).
+* LAN multiplayer.
 * Many ways to rule your kingdom.
 
 ## Installation
@@ -33,9 +33,13 @@ pip3 install opencv-python-headless
 ```
 
 ## How to run
-In main directory run.
+In the main directory run
 ```bash
 python3 main.py
+```
+or, if you want cheats enabled,
+```bash
+python3 main.py --debug
 ```
 
 ## Creators

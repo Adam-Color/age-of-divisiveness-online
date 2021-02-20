@@ -16,11 +16,13 @@ if __name__ == "__main__":
     win = WelcomeWindow()
     win.show()
     app.exec_()
+    client = None
+    world_map = None
+    server_thread = None
     try:
         if win.connect_window:
             world_map = win.connect_window.lobby_window.game_map
             client = win.connect_window.client
-            server_thread = None
         elif win.map_generator_window:
             world_map = win.map_generator_window.lobby_window.game_map
             client = win.map_generator_window.lobby_window.client
@@ -28,6 +30,6 @@ if __name__ == "__main__":
     except AttributeError:
         exit(1)
 
-    if client.started:
-        window = Game(SCREEN_WIDTH, SCREEN_HEIGHT, world_map, client, server_thread)
+    if client and client.started:
+        window = Game(SCREEN_WIDTH, SCREEN_HEIGHT, world_map, client, '--debug' in sys.argv, server_thread)
         window.run()

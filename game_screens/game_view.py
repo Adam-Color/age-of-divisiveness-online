@@ -10,6 +10,7 @@ from game_screens.city_view import CityView
 from game_screens.game_logic import GameLogic
 from game_screens.popups import TopBar, UnitPopup, CityCreationPopup, EndingPopup, DiplomaticPopup
 from game_screens.tiles import Tile
+from server_utils import Client
 
 TOP_BAR_SIZE = 0.0625  # expressed as the percentage of the current screen height
 UNIT_POPUP_SIZE = 3 * TOP_BAR_SIZE
@@ -17,8 +18,6 @@ UNIT_POPUP_SIZE = 3 * TOP_BAR_SIZE
 SCROLL_STEP = 0.125  # new_height = old_height +- 2 * scroll_step * original_height, same with width
 MAX_ZOOM = int(1 / (2 * SCROLL_STEP))
 
-# TILE_ROWS = 25
-# TILE_COLS = 40
 MARGIN = 1  # space between two tiles (vertically & horizontally) in pixels (while fully zoomed out)
 
 
@@ -27,7 +26,7 @@ class GameView(arcade.View):
     The view of the map of the game.
     """
 
-    def __init__(self, width: int, height: int, tiles: list, client):
+    def __init__(self, width: int, height: int, tiles: list, client: Client, cheats_enabled: bool):
         """
         :param width: Max screen width.
         :param height: Max screen height.
@@ -38,6 +37,7 @@ class GameView(arcade.View):
 
         self.client = client
         self.my_turn = False
+        self.cheats_enabled = cheats_enabled
         self.cur_enemy = ""
 
         self.SCREEN_WIDTH = width
@@ -279,8 +279,8 @@ class GameView(arcade.View):
                             else:
                                 self.enemy_city_view.set_city(tile.city)
                                 self.window.show_view(self.enemy_city_view)
-                        # some cheats, TODO make them activate by typing 'AEZAKMI'
-                        else:
+                        # some cheats
+                        elif self.cheats_enabled:
                             if modifiers & arcade.key.MOD_SHIFT:
                                 # shift + click creates a settler on the tile
                                 self.game_logic.add_unit(tile_col, tile_row, self.client.nick, 'Settler', 1)
@@ -344,17 +344,17 @@ class GameView(arcade.View):
                         area = self.game_logic.get_city_area(unit)
                         stats = City.calculate_goods_no_city(area)
                         self.city_popup.display(unit, stats)
-                # TODO DELETE THIS
-                # END GAME EXAMPLE
-                elif symbol == arcade.key.P:
-                    messages = self.client.end_game_by_host()
-                    self.handle_additional_messages(messages)
-                # DEFEAT PLAYER EXAMPLE
-                elif symbol == arcade.key.D and self.unit_popup.visible():
-                    player_to_kill = self.unit_popup.unit.owner
-                    if player_to_kill != self.game_logic.me:
-                        messages = self.client.kill(player_to_kill.nick)
+                elif self.cheats_enabled:
+                    # END GAME EXAMPLE
+                    if symbol == arcade.key.P:
+                        messages = self.client.end_game_by_host()
                         self.handle_additional_messages(messages)
+                    # DEFEAT PLAYER EXAMPLE
+                    elif symbol == arcade.key.D and self.unit_popup.visible():
+                        player_to_kill = self.unit_popup.unit.owner
+                        if player_to_kill != self.game_logic.me:
+                            messages = self.client.kill(player_to_kill.nick)
+                            self.handle_additional_messages(messages)
 
     def handle_additional_messages(self, messages):
         """

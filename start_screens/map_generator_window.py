@@ -91,9 +91,9 @@ class MapGeneratorWindow(QMainWindow):
                                       "<b>Height</b> - number of tiles in height <br>"
                                       "Recommended ratio is 5:8 <br><br>"
                                       "<b>Seed</b> - is used to generate different maps from the same parameters <br><br>"
-                                      "Next parameters determine level on which chosen tile type stop to appear. You can imagine it ass flood, so tiles with given altitude won't be covered by water, but those with smaller altitude will be.<br>"
+                                      "Next parameters determine level on which chosen tile type stop to appear. You can imagine it as flood, so tiles with given altitude won't be covered by water, but those with smaller altitude will be.<br>"
                                       "It's important to notice that hills should have higher altitude than plains and mountains should have higher than hills. Otherwise obscure maps will be generated and some materials may not be present. <br>"
-                                      "But fell free to experiment.")
+                                      "But feel free to experiment.")
 
         self.generate_button = QPushButton(self)
         self.generate_button.setText("Generate")

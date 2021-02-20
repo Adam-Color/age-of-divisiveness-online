@@ -87,7 +87,7 @@ class AboutWindow(QMainWindow):
         self.move(qr.topLeft())
 
     def show_github(self):
-        webbrowser.open("https://github.com/bwcs99/PZ2020-2021")
+        webbrowser.open("https://github.com/chceswieta/age-of-divisiveness")
 
 
 if __name__ == "__main__":
