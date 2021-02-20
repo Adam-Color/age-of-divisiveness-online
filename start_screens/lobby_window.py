@@ -101,6 +101,7 @@ class LobbyWindow(QMainWindow):
                 self)
             about_text.setAlignment(Qt.AlignCenter)
             about_text.setGeometry(QRect(30, 370, 420, 90))
+            about_text.setTextInteractionFlags(Qt.TextSelectableByMouse)
         else:
             self.launch_button.setEnabled(False)
         self.launch_button.clicked.connect(self.__launch_game)
