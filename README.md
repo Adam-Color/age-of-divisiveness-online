@@ -15,16 +15,16 @@ Nevertheless, keep your kingdom in order and do not find your domain in the age 
 * opencv-python 4.4.0.46
 
 ## Features
-* Fun and complex tactics.
-* Many interdependent mechanics.
-* Client-Server architecture.
-* Great pixel-art style graphics.
-* Strong Civilization I and old Settlers vibe.
-* LAN multiplayer.
+* Fun and complex tactics,
+* Many interdependent mechanics,
+* Client-Server architecture,
+* Great pixel-art style graphics,
+* Strong Civilization I and old Settlers vibe,
+* Multiplayer by LAN,
 * Many ways to rule your kingdom.
 
 ## Installation
-This is game-development framework [arcade](https://arcade.academy/).
+Created with game-development framework [arcade](https://arcade.academy/).
 
 ```bash
 pip3 install arcade
@@ -42,10 +42,17 @@ or, if you want cheats enabled,
 python3 main.py --debug
 ```
 
+## Basic controls
+- Use the mouse wheel to zoom in and out.
+- Hold and drag the right mouse button to move the camera.
+- Use the left mouse button to select a unit or a city.
+- When a unit is selected, use the left mouse button to click on a blinking tile to move there; click on a plain tile to deselect the unit.
+- When a city is selected, use the ESC button to return to the map.
+
 ## Creators
 * [Patryk Majewski](https://github.com/chceswieta)
 * [Krzysztof Szymaniak](https://github.com/krzysztof-szymaniak)
 * [Gabriel Wechta](https://github.com/GabrielWechta)
 * [Błażej Wróbel](https://github.com/bwcs99)
 
-This project is created as part of a university course on *Wroclaw University of Science and Technology.*
+This project was created as part of a university course at *Wrocław University of Science and Technology.*

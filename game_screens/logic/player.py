@@ -1,6 +1,6 @@
 import arcade
 
-from game_screens.granary import Granary
+from game_screens.logic.granary import Granary
 
 
 class Player:
@@ -24,7 +24,6 @@ class Player:
         # also known as message. Is set by each (other) player and deleted right after other player
         # ends turn, it's used for checking if deputation was already sent in that turn.
         self.deputation = None
-
 
     def __str__(self):
         return f"({self.nick}, {self.civilisation}, {self.color})"
@@ -53,7 +52,6 @@ class Player:
                 else:
                     pass
 
-        print(daily_income)
         self.daily_income = daily_income
 
     def deploy_units(self):

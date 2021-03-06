@@ -3,7 +3,7 @@ import random
 
 import arcade
 
-from game_screens.granary import Granary
+from game_screens.logic.granary import Granary
 
 
 class City(arcade.sprite.Sprite):
@@ -107,25 +107,23 @@ class City(arcade.sprite.Sprite):
         return goods
 
     def collect_units(self):
-        # print("Begin collecting units.")
-        # print(self.unit_request)
         self.days_left_to_building_completion -= 1
         if self.unit_request is not None and self.days_left_to_building_completion <= 0:
             request = self.unit_request
             tile = self.pick_tile_to_build_at()
             if tile is not None:
-                from game_screens.combat.garrison import Garrison
-                from game_screens.units import Settler
+                from game_screens.logic.garrison import Garrison
+                from game_screens.logic.units import Settler
                 if request['type'] == 'Settler':
                     unit = Settler(tile, self.owner)
                 else:
                     unit = Garrison(tile, self.owner, request['type'], request['count'])
                 tile.occupant = unit
-                print(f"Unit {str(unit)} finished recruiting.")
                 self.unit_request = None
                 return unit
             else:
-                print(f"No space left near the city for a new unit.")
+                # print(f"No space left near the city for a new unit.")
+                pass
         return None
 
     def collect_building(self):
@@ -139,8 +137,6 @@ class City(arcade.sprite.Sprite):
             self.building_request = None
             self.days_left_to_building_building_completion = 0
             self.goods = self.calculate_goods()
-            print("Build!")
-            print(self.buildings)
 
     def pick_tile_to_build_at(self):
         for t in self.area:

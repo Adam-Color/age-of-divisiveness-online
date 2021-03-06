@@ -2,11 +2,10 @@ from math import sqrt
 
 import arcade
 
-from game_screens.city import City
-from game_screens.combat.garrison import Garrison
-from game_screens.player import Player
-from game_screens.tiles import Tile, BlinkingTile, BorderTile
-from game_screens.units import Unit, Settler
+from game_screens.logic import City
+from game_screens.logic import Player
+from game_screens.logic import Tile, BlinkingTile, BorderTile
+from game_screens.logic import Unit, Settler, Garrison
 
 
 class GameLogic:
@@ -214,6 +213,15 @@ class GameLogic:
                     surroundings.append(tile)
         return surroundings
 
+    def get_potential_city_stats(self, unit: Settler) -> dict:
+        """
+        Gets stats that a city built by the unit would have.
+        :param unit: a settler unit
+        :return: a dict of city stats with keys of 'gold' etc.
+        """
+        surroundings = self.get_city_area(unit)
+        return City.calculate_goods_no_city(surroundings)
+
     def build_city(self, unit: Settler, name: str):
         """
         Turns a settler unit into a city.
@@ -229,7 +237,6 @@ class GameLogic:
         unit.owner.cities.append(city)
         unit.owner.calculate_daily_income()  # to update player.daily_income used in top_bar
         self.update_players_borders(unit.owner)
-        print("Created city area:", city.area)
 
     def build_opponents_city(self, x: int, y: int, name: str):
         """ Turns a settler unit located on tile (x, y) into a city. """
@@ -306,7 +313,10 @@ class GameLogic:
             parent_cost = visited[(x, y)]
             for col, row in [(x, y + 1), (x + 1, y), (x, y - 1), (x - 1, y)]:
                 tile = self.get_tile(col, row)
-                if tile and (tile.owner is None or tile.owner == self.me or (tile.owner in self.me.allies and tile.city is None) or tile.owner in self.me.enemies):
+                if tile and (tile.owner is None or tile.owner == self.me
+                             or (tile.owner in self.me.allies and tile.city is None)
+                             or tile.owner in self.me.enemies
+                             ):
                     alt_cost = parent_cost + tile.cost
                     if not tile.occupant:
                         if alt_cost <= unit.movement and ((col, row) not in visited or alt_cost < visited[col, row]):
@@ -319,81 +329,3 @@ class GameLogic:
                             queue.append((col, row))
                             visited[col, row] = unit.movement
         return visited
-
-    @staticmethod
-    def handle_buying_process(self, sender, my_granary, seller_granary, resource_tuple, price, quantity):
-        """ Obługa kupna - param1: nick kupującego (str), param2: mój karbiec (granary),
-        param3: skarbiec sprzedawcy (granary),
-        param4: krotka - (czy miasto, nazwa surowca/współrzędne)(bool, str/(x:int, y:int)), param5: cena (int),
-        param6: ilość (int) """
-        is_city = resource_tuple[0]
-        resource_name = resource_tuple[1]
-        if is_city:
-            my_granary.try_to_sub_gold(int(price))
-            seller_granary.add_gold(int(price))
-            city_cords = resource_name
-            x_cord = city_cords[0]
-            y_cord = city_cords[1]
-            self.give_opponents_city(x_cord, y_cord, str(sender))
-        else:
-            if resource_name == "wood":
-                my_granary.add_wood(int(quantity))
-                my_granary.try_to_sub_gold(int(price))
-                seller_granary.try_to_sub_wood(int(quantity))
-                seller_granary.add_gold(int(price))
-            elif resource_name == "stone":
-                my_granary.add_stone(int(quantity))
-                my_granary.try_to_sub_gold(int(price))
-                seller_granary.try_to_sub_stone(int(quantity))
-                seller_granary.add_gold(int(price))
-            elif resource_name == "food":
-                my_granary.add_food(int(quantity))
-                my_granary.try_to_sub_gold(int(price))
-                seller_granary.try_to_sub_food(int(quantity))
-                seller_granary.add_food(int(price))
-
-    @staticmethod
-    def handle_selling_process(self, my_granary, buyer_granary, resource, price, quantity):
-        """ Obługa sprzedaży - param1: mój skarbiec (granary), param2: skarbiec kupca (granary),
-        param3: surowiec (str), param4: cena (int),
-        param5: ilość (int) """
-        if resource == 'food':
-            my_granary.try_to_sub_food(int(quantity))
-            my_granary.add_gold(int(price))
-            buyer_granary.try_to_sub_gold(int(price))
-            buyer_granary.add_food(int(quantity))
-        elif resource == 'wood':
-            my_granary.try_to_sub_wood(int(quantity))
-            my_granary.add_gold(int(price))
-            buyer_granary.try_to_sub_gold(int(price))
-            buyer_granary.add_wood(int(quantity))
-        elif resource == 'stone':
-            my_granary.try_to_sub_stone(int(quantity))
-            my_granary.add_gold(int(price))
-            buyer_granary.try_to_sub_gold(int(price))
-            buyer_granary.add_stone(int(quantity))
-
-    @staticmethod
-    def update_allies_list(self, sender, receiver, exists):
-        """ Dodawanie/usuwanie z listy sojuszników
-        param1 - nadawca (nick) (str), param2 - receiver (nick) (str),
-        param3 - czy propozycja rozpatrzona pozytywnie (bool) """
-        if exists:
-            sender.allies.extend([receiver.nick])
-            receiver.allies.extend([sender.nick])
-        else:
-            sender.allies.remove(receiver.nick)
-            receiver.alleis.remove(sender.nick)
-
-    @staticmethod
-    def update_enemies_list(self, sender, receiver, exists):
-        """ Dodawanie/usuwanie z listy wrogów (gracze, z którymi toczymy wojnę)
-        param1 - nadawcq (nick) (str), param2 - odbiorca (nick) (str),
-        param3 - czy jesteśmy nadal w stanie wojny (bool)"""
-        if exists:
-            sender.enemies.extend([receiver.nick])
-            receiver.enemies.extend([sender.nick])
-        else:
-            sender.enemies.remove(receiver.nick)
-            receiver.enemies.remove(sender.nick)
-

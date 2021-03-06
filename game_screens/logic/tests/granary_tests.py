@@ -1,6 +1,6 @@
 import unittest
 
-from granary import Granary
+from game_screens.logic import Granary
 
 
 class GranaryTests(unittest.TestCase):

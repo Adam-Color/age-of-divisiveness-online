@@ -4,12 +4,10 @@ from copy import copy
 import arcade
 import arcade.gui
 
-from game_screens.city import City
-from game_screens.combat.garrison import Garrison
-from game_screens.player import Player
-from game_screens.units import Settler
+from game_screens.logic import City, Garrison, Player, Settler
 
-BACKGROUND_COLOR = (60, 0, 0)  # arcade.color.ST_PATRICK_BLUE
+
+BACKGROUND_COLOR = (60, 0, 0)
 FONT_COLOR = arcade.color.WHITE
 
 arcade.gui.elements.UIStyle.set_class_attrs(
@@ -153,14 +151,8 @@ class TopBar(PopUp):
             change['food'] += city.goods['food']
             change['stone'] += city.goods['stone']
 
-        self.treasury_label.text = "G:{} (+{}), W:{} (+{}), S:{} (+{}), F:{} (+{})".format(total.gold,
-                                                                                           change["gold"],
-                                                                                           total.wood,
-                                                                                           change["wood"],
-                                                                                           total.stone,
-                                                                                           change["stone"],
-                                                                                           total.food,
-                                                                                           change["food"])
+        self.treasury_label.text = f'G:{total.gold} (+{change["gold"]}), W:{total.wood} (+{change["wood"]}), ' \
+                                   f'S:{total.stone} (+{change["stone"]}), F:{total.food} (+{change["food"]})'
         self.adjust()
 
     def game_ended(self):
@@ -274,7 +266,10 @@ class GranaryPopup(PopUp):
     def __init__(self, size_x: float, size_y: float, city: City, background_color=BACKGROUND_COLOR,
                  font_color=FONT_COLOR):
         """
-        :param size: Should be between 0 and 1. Determines what part of the current screen height should the bar occupy.
+        :param size_x: Should be between 0 and 1. Determines what part of the current screen width should the bar
+                       occupy.
+        :param size_y: Should be between 0 and 1. Determines what part of the current screen height should the bar
+                       occupy.
         """
         super().__init__(0, 0, size_x, size_y, background_color)
         self.city = city
@@ -536,9 +531,11 @@ class CityInfo(PopUp):
             self.stone_label.text = "Stone:" + f"+{stats['stone']}".rjust(self.base_width - 6, ' ')
 
             if self.city.unit_request:
-                self.current_label.text = f"{self.city.unit_request['count']} {self.city.unit_request['type']} ({self.city.days_left_to_building_completion})"
+                self.current_label.text = f"{self.city.unit_request['count']} {self.city.unit_request['type']} " \
+                                          f"({self.city.days_left_to_building_completion})"
             elif self.city.building_request:
-                self.current_label.text = f"{self.city.building_request} ({self.city.days_left_to_building_building_completion})"
+                self.current_label.text = f"{self.city.building_request} " \
+                                          f"({self.city.days_left_to_building_building_completion})"
             else:
                 self.current_label.text = "Nothing"
 
@@ -741,7 +738,6 @@ class DiplomaticPopup(PopUp):
             else:
                 self.message_label2.text = f"{sender} didn't agree to sell {subject}"
                 self.message_label3.text = f"the city of {message[4]} for {message[5]} "
-
 
     def hide(self):
         """ Wipes the pop-up's data and hides it. """

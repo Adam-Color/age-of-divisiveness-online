@@ -1,10 +1,10 @@
 import arcade
 from arcade.gui import UIManager
 
-from start_screens.buy_city_window import BuyCityWindow
-from start_screens.buy_goods_window import BuyGoodsWindow
-from game_screens.city import City
-from game_screens.popups import EnemyCityInfo
+from game_screens.ui.diplomacy.buy_city_window import BuyCityWindow
+from game_screens.ui.diplomacy.buy_goods_window import BuyGoodsWindow
+from game_screens.logic.city import City
+from game_screens.ui.popups import EnemyCityInfo
 
 
 class EnemyCityView(arcade.View):

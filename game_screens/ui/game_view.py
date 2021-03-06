@@ -4,12 +4,11 @@ from math import ceil
 import arcade
 import arcade.gui
 
-from game_screens.enemy_city_view import EnemyCityView
-from game_screens.city import City
-from game_screens.city_view import CityView
-from game_screens.game_logic import GameLogic
-from game_screens.popups import TopBar, UnitPopup, CityCreationPopup, EndingPopup, DiplomaticPopup
-from game_screens.tiles import Tile
+from game_screens.logic import GameLogic
+from game_screens.logic import Tile
+from game_screens.ui.city_view import CityView
+from game_screens.ui.enemy_city_view import EnemyCityView
+from game_screens.ui.popups import TopBar, UnitPopup, CityCreationPopup, EndingPopup, DiplomaticPopup
 from server_utils import Client
 
 TOP_BAR_SIZE = 0.0625  # expressed as the percentage of the current screen height
@@ -341,8 +340,7 @@ class GameView(arcade.View):
                 elif symbol == arcade.key.N and self.unit_popup.can_build_city():
                     unit = self.unit_popup.unit
                     if self.game_logic.is_unit_mine(unit):
-                        area = self.game_logic.get_city_area(unit)
-                        stats = City.calculate_goods_no_city(area)
+                        stats = self.game_logic.get_potential_city_stats(unit)
                         self.city_popup.display(unit, stats)
                 elif self.cheats_enabled:
                     # END GAME EXAMPLE
@@ -516,7 +514,9 @@ class GameView(arcade.View):
                             self.update_topbar = True
 
                         self.client.only_send(
-                            f"DIPLOMACY_ANSWER:{message[1]}:{message[3]}:{message[2]}:{message[4]}:{change if response else max_price}:{actual_quantity if response else 0}:{response}")
+                            f"DIPLOMACY_ANSWER:{message[1]}:{message[3]}:{message[2]}:{message[4]}:"
+                            f"{change if response else max_price}:{actual_quantity if response else 0}:{response}"
+                        )
 
                     elif message[1] == "BUY_CITY":
                         x, y = eval(message[4])

@@ -1,6 +1,6 @@
 import random
 
-from game_screens.units import Unit
+from game_screens.logic import Unit
 
 # a concept for test purposes, feel free to change or add more
 """ Dictionary of soldiers' properties. """
@@ -36,8 +36,7 @@ class Garrison(Unit):
             random.seed(seed)
         else:
             random.seed()
-        print(f"\nA battle between {defender.owner.short_civ.capitalize()} {defender.count} {defender.type} "
-              f"and {attacker.owner.short_civ.capitalize()} {attacker.count} {attacker.type} is about to start!")
+
         while defender.health > 0 and attacker.health > 0:
             if random.uniform(0, 1) < attacker.probability:
                 defender.health -= attacker.damage
@@ -51,9 +50,4 @@ class Garrison(Unit):
         else:
             winner = None  # draw, both died :<
 
-        if winner is not None:
-            print(f'The winner is {winner.owner.short_civ.capitalize()} {winner.type}!'
-                  f'\nWith {winner.health} total health left.')
-        else:
-            print('Both sides have suffered extreme damage.')
         return winner

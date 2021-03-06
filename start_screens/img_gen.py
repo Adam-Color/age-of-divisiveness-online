@@ -5,13 +5,13 @@ from PIL import Image
 
 def get_color(tile):
     """ Return RGB value tied to tile type """
-    if tile == 0:  # woda
+    if tile == 0:  # sea
         return [0, 64, 128]
-    if tile == 1:  # rowniny
+    if tile == 1:  # plains
         return [112, 169, 0]
-    if tile == 2:  # wzgorza
+    if tile == 2:  # hills
         return [16, 128, 64]
-    if tile == 3:  # gory
+    if tile == 3:  # mountains
         return [128, 128, 128]
     return [0, 0, 0]
 

@@ -84,12 +84,3 @@ class WelcomeWindow(QMainWindow):
     def __show_about(self):
         self.about_window = AboutWindow()
         self.about_window.show()
-
-
-
-# for testing
-if __name__ == '__main__':
-    app = QApplication(sys.argv)
-    win = WelcomeWindow()
-    win.show()
-    sys.exit(app.exec_())

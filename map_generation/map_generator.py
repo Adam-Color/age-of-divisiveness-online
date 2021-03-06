@@ -3,12 +3,6 @@ import random
 from opensimplex import OpenSimplex
 
 
-# rgb(0, 64, 128) woda
-# rgb(128, 128, 128) gory
-# rgb(16, 128, 64) wzgorza
-# rgb(112, 169, 0) rowniny
-
-
 def noise(nx, ny, gen):
     """ Generate noise value at (nx, ny) using generator gen, tweaked to return a value from (0, 1) """
     return gen.noise2d(nx, ny) / 2.0 + 0.5
@@ -27,13 +21,13 @@ def elevation(nx, ny, gen):
 def biome(val, params):
     """ Quantize value val into ranges specified by params """
     # print(val)
-    if val < params[1]:  # woda
+    if val < params[1]:  # sea
         return 0
-    if val < params[2]:  # rowniny
+    if val < params[2]:  # plains
         return 1
-    if val < params[3]:  # wzgorza
+    if val < params[3]:  # hills
         return 2
-    return 3  # gory
+    return 3  # mountains
 
 
 def generate_map(width, height, params):

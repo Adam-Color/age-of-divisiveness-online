@@ -1,7 +1,7 @@
 import arcade
 
-from game_screens.city import City
-from game_screens.tiles import Tile
+from game_screens.logic.city import City
+from game_screens.logic.tiles import Tile
 
 
 class Unit(arcade.sprite.Sprite):

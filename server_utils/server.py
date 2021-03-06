@@ -9,7 +9,6 @@ FORMAT = 'utf-8'
 HEADER = 200
 
 
-
 def print_color(text):
     print("\u001b[36m" + text + "\u001b[0m")
 

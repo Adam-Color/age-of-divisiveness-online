@@ -1,11 +1,10 @@
 import arcade
-from PyQt5.QtWidgets import QApplication
 from arcade.gui import UIManager
+from PyQt5.QtWidgets import QApplication
 
-from game_screens.city import City
-from game_screens.popups import CityInfo
-from start_screens.build_building_window import BuildBuildingWindow
-from start_screens.build_unit_window import BuildUnitWindow
+from game_screens.logic import City
+from game_screens.ui.diplomacy import BuildBuildingWindow, BuildUnitWindow
+from game_screens.ui.popups import CityInfo
 
 
 class CityView(arcade.View):

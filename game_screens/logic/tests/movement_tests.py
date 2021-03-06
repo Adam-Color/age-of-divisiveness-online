@@ -1,8 +1,9 @@
 import unittest
 from math import inf
 
-from game_screens.game_logic import GameLogic
-from game_screens.tiles import Tile
+from game_screens.logic import GameLogic
+from game_screens.logic import Tile
+
 
 CIV_ONE = "The Great Northern"
 CIV_TWO = "Mixtec"

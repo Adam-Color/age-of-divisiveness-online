@@ -43,8 +43,8 @@ class Granary:
 
     def insert_from(self, granary):
         """
-        Method for transporting, stealing, harvesting from one granary directly to another. After that "from" granary will be
-        empty.
+        Method for transporting, stealing, harvesting from one granary directly to another. After that "from" granary
+        will be empty.
         :param granary: granary from which materials will be taken.
         """
         self.gold += granary.gold

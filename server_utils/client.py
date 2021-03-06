@@ -30,12 +30,7 @@ class Client:
 
     # This method sends requests on server and expects response.
     def send_msg(self, msg):
-        message = msg.encode(FORMAT)
-        message_length = len(message)
-        send_length = str(message_length).encode(FORMAT)
-        send_length += b' ' * (HEADER - len(send_length))
-        self.sock.send(send_length)
-        self.sock.send(message)
+        self.only_send(msg)
         response = self.rec_msg()
         return response
 
@@ -52,7 +47,7 @@ class Client:
     def connect(self, ip, port):
         try:
             self.sock.connect((ip, int(port)))
-        except ConnectionRefusedError as e:
+        except ConnectionRefusedError:
             return f'Game is not hosted yet.'
 
     # Standard disconnection method
