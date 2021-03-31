@@ -1,4 +1,4 @@
-![Age of Divisiveness](https://github.com/bwcs99/PZ2020-2021/blob/main/resources/images/aod_logo.png?raw=true)
+![Age of Divisiveness](resources/images/aod_logo.png?raw=true)
 
 ## Game Description
 In a time of great conflict, new kingdoms are born in minds of ambitious rules and willing hearts of dedicated serfs. 
@@ -22,6 +22,13 @@ Nevertheless, keep your kingdom in order and do not find your domain in the age 
 * Strong Civilization I and old Settlers vibe,
 * Multiplayer by LAN,
 * Many ways to rule your kingdom.
+
+## Screenshots
+![City building](resources/promo/city_build.gif)
+![Combat](resources/promo/city_capture.gif)
+![City view 1](resources/promo/cityview.png)
+![City view 2](resources/promo/cityview2.png)
+![Map generation](resources/promo/mapgen.png)
 
 ## Installation
 Created with game-development framework [arcade](https://arcade.academy/).
