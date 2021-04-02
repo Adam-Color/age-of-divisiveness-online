@@ -8,6 +8,14 @@ Will you win by being a despotic tyrant or maybe by creating a web of secret pac
 Will your kingdom story be written by romantic tales or fearful half lies?  
 Nevertheless, keep your kingdom in order and do not find your domain in the age of divisiveness.
 
+## Creators
+* [Patryk Majewski](https://github.com/chceswieta)
+* [Krzysztof Szymaniak](https://github.com/krzysztof-szymaniak)
+* [Gabriel Wechta](https://github.com/GabrielWechta)
+* [Błażej Wróbel](https://github.com/bwcs99)
+
+This project was created as part of a university course at *Wrocław University of Science and Technology.*
+
 ## Technologies
 * Python 3.8
 * Arcade 2.5.2
@@ -56,10 +64,3 @@ python3 main.py --debug
 - When a unit is selected, use the left mouse button to click on a blinking tile to move there; click on a plain tile to deselect the unit.
 - When a city is selected, use the ESC button to return to the map.
 
-## Creators
-* [Patryk Majewski](https://github.com/chceswieta)
-* [Krzysztof Szymaniak](https://github.com/krzysztof-szymaniak)
-* [Gabriel Wechta](https://github.com/GabrielWechta)
-* [Błażej Wróbel](https://github.com/bwcs99)
-
-This project was created as part of a university course at *Wrocław University of Science and Technology.*
