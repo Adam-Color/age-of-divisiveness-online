@@ -260,6 +260,7 @@ class BuildBuildingWindow(QMainWindow):
             self.no_building_type_label.setVisible(True)
 
         else:
+            # TODO: if statement doesn't work
             if self.grandparent.building_building_costs is not None:
                 self.grandparent.city.owner.granary.refund()
             self.grandparent.city.owner.granary.pay_for(self.building_cost_holder)  # paying for building
