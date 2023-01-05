@@ -67,6 +67,8 @@ class City(arcade.sprite.Sprite):
         if self.buildings["Free Market"]:
             for _ in self.area:
                 self.granary.add_gold(3)
+        else:
+            self.granary.add_gold(5)
 
         if self.buildings["Mines"]:
             self.granary.add_stone(20)
