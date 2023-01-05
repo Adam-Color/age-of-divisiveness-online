@@ -4,7 +4,6 @@ from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtGui import QPixmap
 from PyQt5.QtWidgets import QMainWindow, QDesktopWidget
 
-
 class BuildBuildingWindow(QMainWindow):
     """
     The most important window when it comes to experience of building civilization.
@@ -260,8 +259,9 @@ class BuildBuildingWindow(QMainWindow):
             self.no_building_type_label.setVisible(True)
 
         else:
-            # TODO: if statement doesn't work
+            #! TODO: broken
             if self.grandparent.building_building_costs is not None:
+                print("previous building: " + f'{self.grandparent.building_building_costs}')
                 self.grandparent.city.owner.granary.refund()
             self.grandparent.city.owner.granary.pay_for(self.building_cost_holder)  # paying for building
 
