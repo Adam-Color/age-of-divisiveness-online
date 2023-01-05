@@ -5,7 +5,7 @@ from opensimplex import OpenSimplex
 
 def noise(nx, ny, gen):
     """ Generate noise value at (nx, ny) using generator gen, tweaked to return a value from (0, 1) """
-    return gen.noise2d(nx, ny) / 2.0 + 0.5
+    return gen.noise2(nx, ny) / 2.0 + 0.5
 
 
 def elevation(nx, ny, gen):
