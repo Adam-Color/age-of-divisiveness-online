@@ -13,8 +13,9 @@ Nevertheless, keep your kingdom in order and do not find your domain in the age 
 * [Krzysztof Szymaniak](https://github.com/krzysztof-szymaniak)
 * [Gabriel Wechta](https://github.com/GabrielWechta)
 * [Błażej Wróbel](https://github.com/bwcs99)
+* [Techi-Joe](https://github.com/Techi-Joe)
 
-This project was created as part of a university course at *Wrocław University of Science and Technology.*
+This project was originally created as part of a university course at *Wrocław University of Science and Technology*, with this fork being created by Techi-Joe.
 
 ## Technologies
 * Python 3.8
@@ -40,6 +41,8 @@ This project was created as part of a university course at *Wrocław University 
 
 ## Installation
 Created with game-development framework [arcade](https://arcade.academy/).
+
+Make sure you use the python 3.8 venv
 
 ```bash
 pip3 install arcade

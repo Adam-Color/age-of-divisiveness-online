@@ -254,10 +254,14 @@ class BuildBuildingWindow(QMainWindow):
         if not self.grandparent.city.owner.granary.is_enough(self.building_cost_holder):
             self.no_building_type_label.setVisible(False)
             self.not_enough_label.setVisible(True)
+
         elif self.building_type_holder is None:
             self.not_enough_label.setVisible(False)
             self.no_building_type_label.setVisible(True)
+
         else:
+            if self.grandparent.building_building_costs is not None:
+                self.grandparent.city.owner.granary.refund()
             self.grandparent.city.owner.granary.pay_for(self.building_cost_holder)  # paying for building
 
             self.grandparent.transport_building_building_costs(self.building_cost_holder)

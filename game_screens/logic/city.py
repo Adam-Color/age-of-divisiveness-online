@@ -83,6 +83,8 @@ class City(arcade.sprite.Sprite):
         if self.buildings["Free Market"]:
             for _ in self.area:
                 goods["gold"] += 3
+        else:
+            goods["gold"] += 5
 
         if self.buildings["Mines"]:
             goods["stone"] += 20
@@ -94,7 +96,7 @@ class City(arcade.sprite.Sprite):
         goods = {'gold': 0, 'wood': 0, 'stone': 0, 'food': 0}
         for tile in area:
             if tile.type == 0:
-                goods['gold'] += 1
+                goods['gold'] += 3
                 goods['food'] += 8
             if tile.type == 1:
                 goods['food'] += 5

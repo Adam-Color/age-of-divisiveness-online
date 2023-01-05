@@ -1,3 +1,5 @@
+# static variable that stores the last bought building for refunding if needed.
+lastBuildingCost = None
 class Granary:
     """
     Class representing concept of resources gathered in one place.
@@ -61,13 +63,22 @@ class Granary:
             return False
 
     def pay_for(self, costs: dict):
+
         if self.is_enough(costs):
             self.gold -= costs["gold"]
             self.wood -= costs["wood"]
             self.stone -= costs["stone"]
             self.food -= costs["food"]
+            lastBuildingCost = self
         else:
             raise ArithmeticError
+
+    # TODO: broken logic
+    def refund(self):
+        self.gold += lastBuildingCost["gold"]
+        self.wood += lastBuildingCost["wood"]
+        self.stone += lastBuildingCost["stone"]
+        self.food += lastBuildingCost["food"]
 
     """Following methods are used to adding materials to granary."""
 

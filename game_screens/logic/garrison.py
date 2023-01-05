@@ -6,8 +6,8 @@ from game_screens.logic import Unit
 """ Dictionary of soldiers' properties. """
 SOLDIER_PROPS = {
     'Poor Infantry': {'health': 15, 'damage': 5, 'probability': 0.8, 'max_movement': 2, 'short_name': 'infantry'},
-    'Archers': {'health': 5, 'damage': 20, 'probability': 0.4, 'max_movement': 3, 'short_name': 'archer'},
-    'Cavalry': {'health': 10, 'damage': 10, 'probability': 0.6, 'max_movement': 4, 'short_name': 'cavalry'}
+    'Archers': {'health': 5, 'damage': 20, 'probability': 0.6, 'max_movement': 3, 'short_name': 'archer'},
+    'Cavalry': {'health': 10, 'damage': 10, 'probability': 0.4, 'max_movement': 6, 'short_name': 'cavalry'}
 }
 
 
