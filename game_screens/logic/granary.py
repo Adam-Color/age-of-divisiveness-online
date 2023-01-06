@@ -73,7 +73,7 @@ class Granary:
         else:
             raise ArithmeticError
 
-    #! TODO: broken logic
+    #! TODO: broken
     def refund(self):
         if self.lastBuildingCost is not None:
             self.gold += self.lastBuildingCost["gold"]

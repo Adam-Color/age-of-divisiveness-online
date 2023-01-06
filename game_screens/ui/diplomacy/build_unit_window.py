@@ -53,6 +53,10 @@ class BuildUnitWindow(QMainWindow):
         self.radioButton_4.setGeometry(QtCore.QRect(40, 130, 151, 21))
         self.radioButton_4.toggled.connect(self.choose_unit)
 
+        self.radioButton_5 = QtWidgets.QRadioButton(self.centralwidget)
+        self.radioButton_5.setGeometry(QtCore.QRect(40, 180, 141, 21))
+        self.radioButton_5.toggled.connect(self.choose_unit)
+
         self.build_button = QtWidgets.QPushButton(self.centralwidget)
         self.build_button.setGeometry(QtCore.QRect(148, 394, 141, 61))
         self.build_button.clicked.connect(self.build)
@@ -128,6 +132,8 @@ class BuildUnitWindow(QMainWindow):
         self.radioButton_3.setText(_translate("MainWindow", self.radioButton_3.unit))
         self.radioButton_4.unit = "Cavalry"
         self.radioButton_4.setText(_translate("MainWindow", self.radioButton_4.unit))
+        self.radioButton_5.unit = "Knight"
+        self.radioButton_5.setText(_translate("MainWindow", self.radioButton_5.unit))
         self.how_many_label.setText(_translate("MainWindow", "How many"))
         self.cost_label.setText(_translate("MainWindow", "Cost:"))
         self.gold_label.setText(_translate("MainWindow", "gold"))
@@ -160,6 +166,9 @@ class BuildUnitWindow(QMainWindow):
 
             if radio_button.unit == self.radioButton_4.unit:  # Cavalry
                 self.unit_cost_holder = {"gold": 7, "wood": 3, "stone": 2, "food": 20, "time": 0.3}
+            
+            if radio_button.unit == self.radioButton_5.unit:  # Knight
+                self.unit_cost_holder = {"gold": 200, "wood": 50, "stone": 20, "food": 100, "time": 0.7}
 
             self.unit_type_holder = radio_button.unit
             self.recalculate_costs()
