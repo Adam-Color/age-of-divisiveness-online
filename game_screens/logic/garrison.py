@@ -8,7 +8,7 @@ SOLDIER_PROPS = {
     'Poor Infantry': {'health': 15, 'damage': 5, 'probability': 0.8, 'max_movement': 2, 'short_name': 'infantry'},
     'Archers': {'health': 5, 'damage': 20, 'probability': 0.6, 'max_movement': 3, 'short_name': 'archer'},
     'Cavalry': {'health': 10, 'damage': 10, 'probability': 0.4, 'max_movement': 6, 'short_name': 'cavalry'},
-    'Knight': {'health': 100, 'damage': 50, 'probability': 0.6, 'max_movement': 1, 'short_name': 'knight'}
+    'Knight': {'health': 100, 'damage': 50, 'probability': 0.6, 'max_movement': 6, 'short_name': 'knight'}
 }
 
 

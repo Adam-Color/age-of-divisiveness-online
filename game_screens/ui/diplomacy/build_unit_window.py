@@ -54,7 +54,7 @@ class BuildUnitWindow(QMainWindow):
         self.radioButton_4.toggled.connect(self.choose_unit)
 
         self.radioButton_5 = QtWidgets.QRadioButton(self.centralwidget)
-        self.radioButton_5.setGeometry(QtCore.QRect(40, 180, 141, 21))
+        self.radioButton_5.setGeometry(QtCore.QRect(40, 160, 141, 21))
         self.radioButton_5.toggled.connect(self.choose_unit)
 
         self.build_button = QtWidgets.QPushButton(self.centralwidget)
@@ -168,7 +168,7 @@ class BuildUnitWindow(QMainWindow):
                 self.unit_cost_holder = {"gold": 7, "wood": 3, "stone": 2, "food": 20, "time": 0.3}
             
             if radio_button.unit == self.radioButton_5.unit:  # Knight
-                self.unit_cost_holder = {"gold": 200, "wood": 50, "stone": 20, "food": 100, "time": 0.7}
+                self.unit_cost_holder = {"gold": 200, "wood": 50, "stone": 20, "food": 100, "time": 0.9}
 
             self.unit_type_holder = radio_button.unit
             self.recalculate_costs()
