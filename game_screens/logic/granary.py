@@ -4,8 +4,6 @@ class Granary:
     Now when I think about it... It all should be dictionary.
     Maybe we will survive without it.
     """
-    # static variable that stores the last bought building for refunding if needed.
-    lastBuildingCost = None
 
     def __init__(self, gold: int = 0, wood: int = 0, stone: int = 0, food: int = 0):
         self.gold = gold
@@ -73,14 +71,12 @@ class Granary:
         else:
             raise ArithmeticError
 
-    #! TODO: broken
-    def refund(self):
-        if self.lastBuildingCost is not None:
-            self.gold += self.lastBuildingCost["gold"]
-            self.wood += self.lastBuildingCost["wood"]
-            self.stone += self.lastBuildingCost["stone"]
-            self.food += self.lastBuildingCost["food"]
-            print("Refunded: " + str(self.lastBuildingCost))
+    def refund(self, lastBuildingCost):
+        if lastBuildingCost is not None:
+            self.gold += lastBuildingCost["gold"]
+            self.wood += lastBuildingCost["wood"]
+            self.stone += lastBuildingCost["stone"]
+            self.food += lastBuildingCost["food"]
         else:
             print("not refunded; static lastBuildingCost is None")
     

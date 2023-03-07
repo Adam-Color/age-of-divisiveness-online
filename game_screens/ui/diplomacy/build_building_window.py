@@ -259,12 +259,9 @@ class BuildBuildingWindow(QMainWindow):
             self.no_building_type_label.setVisible(True)
 
         else:
-            #! TODO: broken, use try except for now
             try:
                 if self.grandparent.building_building_costs is not None:
-                    print("previous building: " + f'{self.grandparent.building_building_costs}')
-                    print("granery object: " + f'{ self.grandparent.city.owner.granary}')
-                    self.grandparent.city.owner.granary.refund()
+                    self.grandparent.city.owner.granary.refund(self.grandparent.building_building_costs)
             except Exception as e:
                 print(e)
             self.grandparent.city.owner.granary.pay_for(self.building_cost_holder)  # paying for building
