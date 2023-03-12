@@ -80,9 +80,15 @@ class Granary:
         else:
             print("not refunded; static lastBuildingCost is None")
     
-    # resets lastBuildingCost to None (used at end of turn)
-    def resetLastBuildingCost(self):
-        Granary.lastBuildingCost = None
+    def refundUnits(self, lastUnitCost):
+        if lastUnitCost is not None:
+            self.gold += lastUnitCost["gold"]
+            self.wood += lastUnitCost["wood"]
+            self.stone += lastUnitCost["stone"]
+            self.food += lastUnitCost["food"]
+        else:
+            print("not refunded; static lastUnitCost is None")
+
 
     """Following methods are used to adding materials to granary."""
 

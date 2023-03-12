@@ -7,7 +7,7 @@ from game_screens import Game
 from start_screens.welcome_window import WelcomeWindow
 
 SCREEN_WIDTH, SCREEN_HEIGHT = pyautogui.size()
-SCREEN_WIDTH, SCREEN_HEIGHT = int(SCREEN_WIDTH * 0.85), int(SCREEN_HEIGHT * 0.85)
+SCREEN_WIDTH, SCREEN_HEIGHT = int(SCREEN_WIDTH * 0.9), int(SCREEN_HEIGHT * 0.9)
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
