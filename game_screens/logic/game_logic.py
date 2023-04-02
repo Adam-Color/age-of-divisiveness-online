@@ -38,7 +38,6 @@ class GameLogic:
 
     def end_turn(self):
         """ Gives units their movement points back, and possibly does other cleanup stuff when a player's turn ends."""
-        self.me.granary.resetLastBuildingCost()
         for unit in self.me.units:
             unit.reset_movement()
         self.hide_unit_range()
