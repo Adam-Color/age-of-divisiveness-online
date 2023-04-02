@@ -1,4 +1,6 @@
 import socket
+import logging
+logger = logging.getLogger(__name__)
 
 FORMAT = 'utf-8'
 HEADER = 200
@@ -26,12 +28,14 @@ class Client:
         incoming_msg = ""
         if msg_len:
             incoming_msg = self.sock.recv(int(msg_len)).decode(FORMAT)
+        logger.debug("rec_msg: %s", incoming_msg)
         return incoming_msg
 
     # This method sends requests on server and expects response.
     def send_msg(self, msg):
         self.only_send(msg)
         response = self.rec_msg()
+        logger.debug("send_msg: %s", response)
         return response
 
     # This method sends request and DOES NOT expect response.
@@ -100,6 +104,7 @@ class Client:
     # Method gets map from server
     def get_map_from_server(self):
         map_from_server = self.send_msg("SHOW_MAP:::")
+        logger.debug("map_from_server: %s", map_from_server)
         return map_from_server
 
     # Method used only by server to inform all connected clients to begin exit lobby procedure

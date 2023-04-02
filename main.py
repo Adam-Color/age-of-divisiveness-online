@@ -1,5 +1,27 @@
 import sys
 import pyautogui
+import logging
+import time
+from os import listdir
+from os.path import isfile, join
+import os
+import glob
+
+log_dir = 'logs/'
+num_files = sum(1 for entry in listdir(log_dir) if isfile(join(log_dir,entry)))
+
+# remove logs after 10 logs
+if num_files > 10:
+    files = glob.glob(log_dir)
+    for f in files:
+        os.remove(f)
+
+day = str(time.localtime().tm_year) + '-' + str(time.localtime().tm_mon) + '-' + str(time.localtime().tm_mday) + '-' + str(time.localtime().tm_hour) + '-' + str(time.localtime().tm_min) + '-' + str(time.localtime().tm_sec)
+
+logging.basicConfig(filename="logs/%s.log"%day, format='%(asctime)s %(message)s', filemode='w')
+
+logger = logging.getLogger()
+logger.setLevel(logging.DEBUG)
 
 from PyQt5.QtWidgets import QApplication
 

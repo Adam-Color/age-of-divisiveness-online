@@ -89,7 +89,7 @@ class ConnectWindow(QMainWindow):
                 return False
             return address.count('.') == 3
         except socket.error:  # not a valid address
-            return True #!
+            return True #! should return False
 
 
     def disable_button(self):
