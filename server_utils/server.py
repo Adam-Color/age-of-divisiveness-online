@@ -1,6 +1,8 @@
 import socket
 import threading
 from random import randint
+import logging
+logger = logging.getLogger(__name__)
 
 from map_generation.spread_players import spread_across_the_map
 from server_utils.player import Player
@@ -142,8 +144,10 @@ class Server:
             civilizations_in_string = str(self.civilizations)
             response.append(f"{civilizations_in_string}".encode(FORMAT))
 
+#! appears to be broken
         elif request[0] == "SHOW_MAP":
             map_in_string = str(self.map_to_send)
+            logger.debug("map_in_string: {}".format(map_in_string))
             response.append(f"{map_in_string}".encode(FORMAT))
 
         elif request[0] == "END_TURN":
