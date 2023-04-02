@@ -18,10 +18,15 @@ Nevertheless, keep your kingdom in order and do not find your domain in the age 
 This project was originally created as part of a university course at *Wrocław University of Science and Technology*, with this fork being created by Techi-Joe.
 
 ## Technologies
-* Python 3.8
+* Python 3.8.0
 * Arcade 2.5.2
 * PyQt 5.10.1
 * opencv-python 4.4.0.46
+* future 0.18.2
+* numpy 1.20.1
+* PIL
+* pyglet 1.5.27
+* sip 4.19.25
 
 ## Features
 * Fun and complex tactics,
