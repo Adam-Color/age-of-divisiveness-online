@@ -1,0 +1,1 @@
+This is the logging folder, logs are wiped after 10 sessions
