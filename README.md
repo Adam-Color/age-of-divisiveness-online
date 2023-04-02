@@ -45,25 +45,7 @@ This project was originally created as part of a university course at *Wrocław 
 ![Map generation](resources/promo/mapgen.png)
 
 ## Installation
-Created with game-development framework [arcade](https://arcade.academy/).
-
-Make sure you use the python 3.8 venv
-
-```bash
-pip3 install arcade
-pip3 install pyqt5
-pip3 install opencv-python-headless
-```
-
-## How to run
-In the main directory run
-```bash
-python3 main.py
-```
-or, if you want cheats enabled,
-```bash
-python3 main.py --debug
-```
+downloads the zip file from most recent release, extract and run the exe file
 
 ## Basic controls
 - Use the mouse wheel to zoom in and out.
