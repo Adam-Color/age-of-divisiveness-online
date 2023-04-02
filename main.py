@@ -25,7 +25,8 @@ if __name__ == "__main__":
             world_map = win.map_generator_window.lobby_window.game_map
             client = win.map_generator_window.lobby_window.client
             server_thread = win.map_generator_window.server_thread
-    except AttributeError:
+    except AttributeError as e:
+        print(e)
         exit(1)
 
     if client and client.started:

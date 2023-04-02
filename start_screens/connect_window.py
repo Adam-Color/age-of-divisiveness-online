@@ -80,18 +80,17 @@ class ConnectWindow(QMainWindow):
 
 #! disabled to allow tcp forwarding
     def is_valid_ipv4_address(self, address):
-    #    try:
-    #        socket.inet_pton(socket.AF_INET, address)
-    #    except AttributeError:
-    #        try:
-    #            socket.inet_aton(address)
-    #        except socket.error:
-    #            return False
-    #        return address.count('.') == 3
-    #    except socket.error:  # not a valid address
-    #        return False
+        try:
+            socket.inet_pton(socket.AF_INET, address)
+        except AttributeError:
+            try:
+                socket.inet_aton(address)
+            except socket.error:
+                return False
+            return address.count('.') == 3
+        except socket.error:  # not a valid address
+            return True #!
 
-        return True
 
     def disable_button(self):
         if len(self.text_line.text()) > 0 and len(self.port_line.text()) > 0 and self.is_valid_ipv4_address(
