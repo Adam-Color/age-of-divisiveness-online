@@ -43,7 +43,8 @@ class Server:
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.settimeout(1)
-        self.sock.bind(('', 0))
+        #! socket lvl increased from 0 to avoid admin requirements
+        self.sock.bind(('', 4242))
         host = socket.gethostname()
         self.ip = socket.gethostbyname(host)
         self.port = self.sock.getsockname()[1]
@@ -144,7 +145,6 @@ class Server:
             civilizations_in_string = str(self.civilizations)
             response.append(f"{civilizations_in_string}".encode(FORMAT))
 
-#! appears to be broken
         elif request[0] == "SHOW_MAP":
             map_in_string = str(self.map_to_send)
             logger.debug("map_in_string: {}".format(map_in_string))
