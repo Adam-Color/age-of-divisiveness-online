@@ -43,8 +43,10 @@ class Server:
         self.sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.sock.settimeout(1)
-        #! socket lvl increased from 0 to avoid admin requirements
-        self.sock.bind(('', 4242))
+        try:
+            self.sock.bind(('', 4242))
+        except socket.error as e:
+            logger.error(e)
         host = socket.gethostname()
         self.ip = socket.gethostbyname(host)
         self.port = self.sock.getsockname()[1]
@@ -147,7 +149,7 @@ class Server:
 
         elif request[0] == "SHOW_MAP":
             map_in_string = str(self.map_to_send)
-            logger.debug("map_in_string: {}".format(map_in_string))
+            # logger.debug("map_in_string: {}".format(map_in_string))
             response.append(f"{map_in_string}".encode(FORMAT))
 
         elif request[0] == "END_TURN":
@@ -234,6 +236,7 @@ class Server:
                 msg_len = int(msg_len)
                 incoming_message = conn.recv(msg_len).decode(FORMAT)
                 print_color(f"RECEIVED NEW MESSAGE: {incoming_message} from {addr}")
+                logger.debug("RECEIVED NEW MESSAGE: %s from %s", incoming_message, addr)
                 if incoming_message[0] == 'DISCONNECT':
                     connected = False
 
@@ -256,6 +259,7 @@ class Server:
         try:
             self.sock.listen()
             print_color(f"IM HERE: {self.ip} {self.port}")
+            logger.debug("IM HERE: %s %s", self.ip, self.port)
             while not self.started and not self.finish:
                 try:
                     conn, addr = self.sock.accept()
@@ -264,10 +268,12 @@ class Server:
                 self.connections[conn] = None
                 conn.settimeout(1)
                 print_color(f"NEW CONNECTION FROM {addr} ")
+                logger.debug("NEW CONNECTION FROM %s", addr)
                 new_thread = threading.Thread(target=self.connection_handler, args=(conn, addr))
                 self.threads.append(new_thread)
                 new_thread.start()
                 print_color(f"N_O ACTIVE CONNECTIONS: {threading.activeCount() - 2}")
+                logger.debug("N_O ACTIVE CONNECTIONS: %s", threading.activeCount() - 2)
             for thread in self.threads:
                 thread.join()
 
@@ -275,6 +281,7 @@ class Server:
             for thread in self.threads:
                 thread.join()
             print_color("SERVER PROCESS TERMINATED")
+            logger.warning("SERVER PROCESS TERMINATED")
 
 
 # for testing

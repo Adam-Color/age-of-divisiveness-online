@@ -78,7 +78,7 @@ class ConnectWindow(QMainWindow):
         available_civ = ast.literal_eval(available_civ)  # evaluating string to list
         CivCombo(available_civ, self)  # by opening CivCombo with self it's possible to go back
 
-#! disabled to allow tcp forwarding
+# can be disabled to allow tcp forwarding (see socket.error below)
     def is_valid_ipv4_address(self, address):
         try:
             socket.inet_pton(socket.AF_INET, address)
@@ -89,7 +89,7 @@ class ConnectWindow(QMainWindow):
                 return False
             return address.count('.') == 3
         except socket.error:  # not a valid address
-            return True #! should return False
+            return False # should return False
 
 
     def disable_button(self):
