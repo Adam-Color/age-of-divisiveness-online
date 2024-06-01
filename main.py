@@ -41,9 +41,11 @@ if __name__ == "__main__":
     server_thread = None
     try:
         if win.connect_window:
-            #TODO: limit looping and display what is going on to user
-            while world_map is None:
+            tries = 0
+            #TODO: display what is going on to user
+            while world_map is None and tries < 10:
                 try:
+                    tries += 1
                     world_map = win.connect_window.lobby_window.game_map
                 except AttributeError as e:
                     logger.error(e)
