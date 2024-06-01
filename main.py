@@ -7,11 +7,16 @@ from os.path import isfile, join
 import os
 import glob
 
+logs_dependencies = ['arcade.sprite_list', 'PIL.PngImagePlugin']
+for log in logs_dependencies:
+    specific_logger = logging.getLogger(log)
+    specific_logger.setLevel(logging.INFO)
+
 log_dir = 'logs/'
 
 day = str(time.localtime().tm_year) + '-' + str(time.localtime().tm_mon) + '-' + str(time.localtime().tm_mday) + '-' + str(time.localtime().tm_hour) + '-' + str(time.localtime().tm_min) + '-' + str(time.localtime().tm_sec)
 
-logging.basicConfig(filename="logs/%s.log"%day, format='%(asctime)s %(levelname)s %(message)s', filemode='w')
+logging.basicConfig(filename="logs/%s.log"%day, format='%(asctime)s %(name)s %(levelname)s %(message)s', filemode='w')
 
 logger = logging.getLogger()
 logger.setLevel(logging.DEBUG)

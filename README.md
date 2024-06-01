@@ -37,7 +37,7 @@ This project was originally created as part of a university course at *Wrocław 
 ![Map generation](resources/promo/mapgen.png)
 
 ## Installation
-downloads the zip file from most recent release, extract and run the exe file
+download the zip file from most recent release, extract and run the exe file
 
 ## Basic controls
 - Use the mouse wheel to zoom in and out.

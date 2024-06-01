@@ -53,6 +53,7 @@ class Client:
         send_length += b' ' * (HEADER - len(send_length))
         self.sock.send(send_length)
         self.sock.send(message)
+        logger.debug("send_msg_only: %s", message)
 
     def connect(self, ip, port):
         """
@@ -60,7 +61,8 @@ class Client:
         """
         try:
             self.sock.connect((ip, int(port)))
-        except ConnectionRefusedError:
+        except ConnectionRefusedError as e:
+            logger.error("Game is not hosted yet. %s", e)
             return 'Game is not hosted yet.'
 
     def disconnect(self):
