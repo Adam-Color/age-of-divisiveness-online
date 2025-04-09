@@ -13,7 +13,7 @@ Nevertheless, keep your kingdom in order and do not find your domain in the age 
 * [Krzysztof Szymaniak](https://github.com/krzysztof-szymaniak)
 * [Gabriel Wechta](https://github.com/GabrielWechta)
 * [Błażej Wróbel](https://github.com/bwcs99)
-* [Techi-Joe](https://github.com/Techi-Joe)
+* [Adam-Color](https://github.com/Adam-Color)
 
 This project was originally created as part of a university course at *Wrocław University of Science and Technology*, with this fork being created by Techi-Joe.
 
